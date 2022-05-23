@@ -1,0 +1,20 @@
+.Wrapper {
+  display: flex;
+  border: thin solid red;
+  height: 100vh;
+}
+
+.AutoSuggest {
+  display: flex;
+  border: thin solid green;
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SuggestList {
+  flex: 1;
+  border: thin solid blue;
+  padding: 10px;
+}
