@@ -1,6 +1,19 @@
-import { useContext, createContext } from "react";
+import React, { useContext, createContext } from "react";
 import { Trie } from "../../classes";
 
-export const TrieContext = createContext({ trie: new Trie() });
+const DefaultContext = createContext({ trie: null });
 
-export const useTrieContext = () => useContext(TrieContext);
+const _TrieProvider = ({ children }) => {
+  return (
+    <DefaultContext.Provider value={{ trie: new Trie() }}>
+      {children}
+    </DefaultContext.Provider>
+  );
+};
+
+export const TrieContext = {
+  Provider: _TrieProvider,
+  Consumer: DefaultContext.Consumer,
+};
+
+export const useTrieContext = () => useContext(DefaultContext);
