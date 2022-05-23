@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as _ from "lodash";
-import { useWordListContext } from "../../providers";
+import { useWordList } from "../../providers";
 
 import "./AddWord.css";
 
@@ -10,7 +10,7 @@ import "./AddWord.css";
  * @returns
  */
 export const AddWord = () => {
-  const { addWord: addNewWord } = useWordListContext();
+  const { addWord: addNewWord } = useWordList();
   const [word, setWord] = useState("");
 
   const handleSubmit = (event) => {

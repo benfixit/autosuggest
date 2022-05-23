@@ -13,7 +13,7 @@ export class TrieNode {
    * Get the word formed from the TrieNode up to the root
    * @returns
    */
-  getWord = () => {
+  getWord() {
     let node = this;
     let word = [];
 
@@ -23,5 +23,5 @@ export class TrieNode {
     }
 
     return word.join("");
-  };
+  }
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import * as _ from "lodash";
-import { useWordListContext } from "../../providers";
+import { useWordList } from "../../providers";
 
 import "./WordList.css";
 
@@ -10,7 +10,7 @@ import "./WordList.css";
  * @returns
  */
 export const WordList = () => {
-  const { words } = useWordListContext();
+  const { words } = useWordList();
   return (
     <div className="WordList-Wrapper">
       <h3>Words in the dictionary</h3>

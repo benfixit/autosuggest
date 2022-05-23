@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import * as _ from "lodash";
-import { useWordListContext } from "../../providers";
+import { useWordList } from "../../providers";
 
 import "./AutoSuggest.css";
 
@@ -10,7 +10,7 @@ import "./AutoSuggest.css";
  * @returns
  */
 export const AutoSuggest = () => {
-  const { words, searchWord: search } = useWordListContext();
+  const { words, searchWord: search } = useWordList();
   const [searchWord, setSearchWord] = useState("");
   const [options, setOptions] = useState(words);
   const [showList, setShowList] = useState(false);

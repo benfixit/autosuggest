@@ -12,7 +12,7 @@ export class Trie {
    * Insert a word into the Trie
    * @param {string} word
    */
-  insert = (word) => {
+  insert(word) {
     let node = this.root;
 
     for (let i = 0; i < word.length; i++) {
@@ -28,14 +28,14 @@ export class Trie {
         node.end = true;
       }
     }
-  };
+  }
 
   /**
    * Search for a prefix in the Trie and
    * return all the words that match the prefix
    * @param {string} prefix
    */
-  search = (prefix) => {
+  search(prefix) {
     let node = this.root;
     let result = [];
 
@@ -51,9 +51,9 @@ export class Trie {
     this.recursiveSearch(node, result);
 
     return result;
-  };
+  }
 
-  recursiveSearch = (node, arr) => {
+  recursiveSearch(node, arr) {
     if (node.end) {
       arr.unshift(node.getWord());
     }
@@ -61,5 +61,5 @@ export class Trie {
     for (let child in node.children) {
       this.recursiveSearch(node.children[child], arr);
     }
-  };
+  }
 }

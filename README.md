@@ -10,12 +10,15 @@
   - [Installation](#installation)
 - [Usage](#usage)
   - [Starting the app](#starting-the-app)
+  - [Adding data to the app](#adding-data-to-the-app)
   - [Running tests](#running-tests)
 - [Structural Breakdown of App](#structural-breakdown-of-app)
 
 ## Introduction
 
 This is an auto suggestion application that uses the Trie data structure under the hood.
+
+The UI is divided into 3 sections. On the left is a search box, type into the search box to search for words in the dictionary. On the top-right is the list of all the words in the dictionary while on the bottom-right is an input box that can be used to add words to the dictionary. New entered words can be searched for in the search section.
 
 ### Language
 
@@ -50,6 +53,14 @@ From your project root type start command
 yarn start
 ```
 
+### Adding data to the app
+
+Once the app is up and running, you need to add data using the add word widget at the bottom-right. To truly enjoy the power of autosuggestion, enter words that share the same prefix e.g ant, anteater, antelope, bag, baggage, cat, catalonia.
+
+Once words are added, they will immediately appear on the list at the top-right and can be searched for too using the search box on the left.
+
+The added data is also persisted to local storage, that way, you do not lose data when you refresh the app. However, to clear all data, you need to manually delete the key from local storage. One of the improvements would be to add a delete word/dictionary functionality.
+
 ### Running tests
 
 From your project root type start command
@@ -80,5 +91,7 @@ These are components that make use of the Context API to make data available to 
 - Bundle the Autosuggest functionality into a package that exposes some API.
 - Use TypeScript.
 - Add Validation for supported characters.
-- Add more unit tests.
+- Add unit tests.
 - Improve the design - Mobile first approach.
+- Debounce the search.
+- Implement data removal functionality.

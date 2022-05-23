@@ -1,12 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
 import _ from "lodash";
-import { useTrieContext } from "../TrieContext";
-
-/**
- * local storage key for the word list.
- * @note data is persisted to the local storage
- */
-const localStorageKey = "autosuggest.v1.data";
+import { useTrie } from "../TrieContext";
+import { useLocalStore } from "../LocalStoreContext";
 
 const DefaultContext = createContext({
   words: [],
@@ -20,13 +15,16 @@ const DefaultContext = createContext({
  * @returns
  */
 const _WordListProvider = ({ children }) => {
-  const storedList = localStorage.getItem(localStorageKey);
-  const [words, setWords] = useState(storedList ? JSON.parse(storedList) : []);
-  const { trie } = useTrieContext();
+  const { trie } = useTrie();
+  const { words: storedWords, setWords: setStoredWords } = useLocalStore();
+  const [words, setWords] = useState(storedWords);
 
+  /**
+   * Store the words when they change
+   */
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(words));
-  }, [words]);
+    setStoredWords(words);
+  }, [words, setStoredWords]);
 
   /**
    * Add word to the trie
@@ -62,4 +60,4 @@ export const WordListContext = {
  * Custom hook to access this context
  * @returns
  */
-export const useWordListContext = () => useContext(DefaultContext);
+export const useWordList = () => useContext(DefaultContext);

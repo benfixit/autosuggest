@@ -1,5 +1,6 @@
-import React, { useContext, createContext } from "react";
+import React, { useEffect, useContext, useMemo, createContext } from "react";
 import { Trie } from "../../classes";
+import { useLocalStore } from "../LocalStoreContext";
 
 const DefaultContext = createContext({ trie: null });
 
@@ -9,8 +10,19 @@ const DefaultContext = createContext({ trie: null });
  * @returns
  */
 const _TrieProvider = ({ children }) => {
+  const trie = useMemo(() => new Trie(), []);
+  const { words } = useLocalStore();
+
+  /**
+   * We want to fetch all the words in local storage
+   * and insert them into the trie
+   */
+  useEffect(() => {
+    words.forEach((word) => trie.insert(word));
+  }, [trie, words]);
+
   return (
-    <DefaultContext.Provider value={{ trie: new Trie() }}>
+    <DefaultContext.Provider value={{ trie }}>
       {children}
     </DefaultContext.Provider>
   );
@@ -25,4 +37,4 @@ export const TrieContext = {
  * Custom hook to access this context
  * @returns
  */
-export const useTrieContext = () => useContext(DefaultContext);
+export const useTrie = () => useContext(DefaultContext);
