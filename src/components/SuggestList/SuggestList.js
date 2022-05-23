@@ -5,8 +5,8 @@ export const SuggestList = () => {
   const { words } = useWordListContext();
   return (
     <ul>
-      {words.map((num) => (
-        <li key={num}>{num}</li>
+      {words.map((word) => (
+        <li key={word}>{word}</li>
       ))}
     </ul>
   );
