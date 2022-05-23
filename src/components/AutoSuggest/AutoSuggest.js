@@ -6,6 +6,7 @@ import "./AutoSuggest.css";
 
 /**
  * Auto Suggest Component
+ * Searches for words in the dictionary and suggests them to the user
  * @returns
  */
 export const AutoSuggest = () => {

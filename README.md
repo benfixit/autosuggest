@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+## Contents
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Introduction](#introduction)
 
-## Available Scripts
+  - [Language](#language)
+  - [UI](#ui)
+  - [Data](#data)
 
-In the project directory, you can run:
+- [Setup](#setup)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Starting the app](#starting-the-app)
+  - [Running tests](#running-tests)
+- [Structural Breakdown of App](#structural-breakdown-of-app)
 
-### `npm start`
+## Introduction
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is an auto suggestion application that uses the Trie data structure under the hood.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Language
 
-### `npm test`
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [Lodash](https://lodash.com/)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### UI
 
-### `npm run build`
+- [React](https://reactjs.org/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Data
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [React Context](https://reactjs.org/docs/context.html)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup
 
-### `npm run eject`
+### Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+git clone https://github.com/benfixit/autosuggest.git
+cd autosuggest
+yarn install
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Starting the app
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+From your project root type start command
 
-## Learn More
+```bash
+yarn start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Running tests
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+From your project root type start command
 
-### Code Splitting
+```bash
+yarn test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Structural Breakdown of App
 
-### Analyzing the Bundle Size
+The app is broken down structurally into 3 different types of modules: classes, components and providers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Classes
 
-### Making a Progressive Web App
+These are traditional ES classes. The Trie and TrieNode classes live here.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Components
 
-### Advanced Configuration
+These are basically React components. The AutoSuggest, WordList, AddWord and App components live here.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Providers
 
-### Deployment
+These are components that make use of the Context API to make data available to their children. Two contexts are created and consumed in the app: TrieContext and WordListContext.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Possible Improvements
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Use CSS modules or styled components to avoid global state pollution.
+- Bundle the Autosuggest functionality into a package that exposes some API.
+- Use TypeScript.
+- Add Validation for supported characters.
+- Add more unit tests.
+- Improve the design - Mobile first approach.

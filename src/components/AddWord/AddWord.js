@@ -6,6 +6,7 @@ import "./AddWord.css";
 
 /**
  * Add Word component
+ * Adds words to the dictionary
  * @returns
  */
 export const AddWord = () => {

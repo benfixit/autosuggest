@@ -6,6 +6,7 @@ import "./WordList.css";
 
 /**
  * Word List Component
+ * Displays a list of all the words in the dictionary
  * @returns
  */
 export const WordList = () => {
