@@ -1,0 +1,16 @@
+.AddWord-Wrapper {
+  flex: 1;
+  padding: 20px;
+}
+
+.AddWord-Input {
+  height: 35px;
+  margin-right: 10px;
+  padding: 0 10px;
+}
+
+.AddWord-SubmitBtn {
+  cursor: pointer;
+  height: 35px;
+  min-width: 100px;
+}

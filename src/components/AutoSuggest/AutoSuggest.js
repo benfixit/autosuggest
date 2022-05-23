@@ -1,26 +1,73 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import * as _ from "lodash";
 import { useWordListContext } from "../../providers";
-import { Trie } from "../../classes";
 
+import "./AutoSuggest.css";
+
+/**
+ * Auto Suggest Component
+ * @returns
+ */
 export const AutoSuggest = () => {
-  const { trie, words } = useWordListContext();
-  const [search, setSearch] = useState("");
+  const { words, searchWord: search } = useWordListContext();
+  const [searchWord, setSearchWord] = useState("");
+  const [options, setOptions] = useState(words);
+  const [showList, setShowList] = useState(false);
 
+  /**
+   * handleChange callback
+   * @param {*} event
+   */
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
 
-    const result = trie.search(value);
+    setSearchWord(value);
 
-    console.log("Searched words === ", trie.root, result);
+    if (!showList) {
+      setShowList(true);
+    }
 
-    setSearch(value);
+    setOptions(search(_.toLower(value)));
+  };
+
+  /**
+   * handleWordClick callback
+   * @param {*} event
+   */
+  const handleWordClick = (event) => {
+    const {
+      target: { innerText },
+    } = event;
+    setSearchWord(innerText);
+    setShowList(false);
   };
 
   return (
-    <>
-      <input type="text" value={search} onChange={handleChange} />
-    </>
+    <div className="AutoSuggest-Wrapper">
+      <h3 className="AutoSuggest-Header">Search Box</h3>
+      <div className="AutoSuggest-Container">
+        <input
+          name="search"
+          value={searchWord}
+          onChange={handleChange}
+          className="AutoSuggest-Input"
+        />
+        {showList && (
+          <ul className="AutoSuggest-Dropdown">
+            {_.map(options, (option) => (
+              <li
+                key={option}
+                className="AutoSuggest-Dropdown-Item"
+                onClick={handleWordClick}
+              >
+                {option}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
   );
 };

@@ -1,17 +1,19 @@
 import { AutoSuggest } from "../AutoSuggest";
-import { SuggestList } from "../SuggestList";
+import { WordList } from "../WordList";
+import { AddWord } from "../AddWord";
 
 import "./App.css";
 
 export const App = () => {
   return (
-    <div className="Wrapper">
-      <div className="AutoSuggest">
+    <main className="App-Wrapper">
+      <section className="App-Section">
         <AutoSuggest />
-      </div>
-      <div className="SuggestList">
-        <SuggestList />
-      </div>
-    </div>
+      </section>
+      <aside className="App-Aside">
+        <WordList />
+        <AddWord />
+      </aside>
+    </main>
   );
 };

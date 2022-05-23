@@ -1,24 +1,53 @@
 import React, { useState, useEffect, useContext, createContext } from "react";
+import _ from "lodash";
 import { useTrieContext } from "../TrieContext";
 
+/**
+ * local storage key for the word list.
+ * @note data is persisted to the local storage
+ */
 const localStorageKey = "autosuggest.v1.data";
 
-const defaultData = ["ant", "antelope", "bath", "bag", "baggage"];
+const DefaultContext = createContext({
+  words: [],
+  addWord: _.noop,
+  searchWord: _.noop,
+});
 
-const DefaultContext = createContext({ words: [], trie: null });
-
+/**
+ *
+ * Passes the word list and some setters to the children components
+ * @returns
+ */
 const _WordListProvider = ({ children }) => {
-  const [words, setWords] = useState(
-    localStorage.getItem(localStorageKey) || defaultData
-  );
+  const storedList = localStorage.getItem(localStorageKey);
+  const [words, setWords] = useState(storedList ? JSON.parse(storedList) : []);
   const { trie } = useTrieContext();
 
   useEffect(() => {
-    words.forEach((word) => trie.insert(word));
-  }, [trie, words]);
+    localStorage.setItem(localStorageKey, JSON.stringify(words));
+  }, [words]);
+
+  /**
+   * Add word to the trie
+   * @param {string} word
+   */
+  const addWord = (word) => {
+    trie.insert(word);
+    setWords(_.toArray(new Set([...words, word])));
+  };
+
+  /**
+   * search for a word in the trie
+   * @param {string} word
+   * @returns
+   */
+  const searchWord = (word) => {
+    return trie.search(word);
+  };
 
   return (
-    <DefaultContext.Provider value={{ words, trie }}>
+    <DefaultContext.Provider value={{ words, trie, addWord, searchWord }}>
       {children}
     </DefaultContext.Provider>
   );
@@ -29,4 +58,8 @@ export const WordListContext = {
   Consumer: DefaultContext.Consumer,
 };
 
+/**
+ * Custom hook to access this context
+ * @returns
+ */
 export const useWordListContext = () => useContext(DefaultContext);

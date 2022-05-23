@@ -1,0 +1,10 @@
+.WordList-Wrapper {
+  flex: 2;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.WordList-ListItem {
+  padding: 10px;
+}
