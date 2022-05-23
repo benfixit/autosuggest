@@ -89,9 +89,9 @@ These are components that make use of the Context API to make data available to 
 
 - Use CSS modules or styled components to avoid global state pollution.
 - Bundle the Autosuggest functionality into a package that exposes some API.
-- Use TypeScript.
+- Use TypeScript and reap the benefits of staic typing.
 - Add Validation for supported characters.
-- Add unit tests.
+- Add more unit tests.
 - Improve the design - Mobile first approach.
-- Debounce the search.
+- Debounce the trie search.
 - Implement data removal functionality.
