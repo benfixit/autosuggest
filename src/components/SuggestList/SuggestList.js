@@ -1,9 +1,11 @@
 import React from "react";
+import { useWordListContext } from "../../providers";
 
 export const SuggestList = () => {
+  const { words } = useWordListContext();
   return (
     <ul>
-      {[1, 2, 3].map((num) => (
+      {words.map((num) => (
         <li key={num}>{num}</li>
       ))}
     </ul>

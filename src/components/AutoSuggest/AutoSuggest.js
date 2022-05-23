@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { useWordListContext } from "../../providers";
 
 export const AutoSuggest = () => {
+  const { words } = useWordListContext;
   const [search, setSearch] = useState("");
 
-  const handleChange = (event) => {
-    console.log("Event === ", event.target.value);
-  };
+  const handleChange = (event) => {};
 
   return (
     <>
